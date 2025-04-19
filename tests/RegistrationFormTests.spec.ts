@@ -11,7 +11,7 @@ test.describe("Registration Form Validation", () => {
   });
 
   for (const data of dataArray) {
-    test(data?.testCase ?? "Default Test Case", async ({ page }) => {
+    test(data.testCase, async ({ page }) => {
       regPage = new RegistrationPage(page);
       await regPage.navigate();
 

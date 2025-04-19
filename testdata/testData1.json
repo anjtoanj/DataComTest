@@ -142,7 +142,7 @@
 
     "expectedMessage": "Successfully registered the following information"
   },
-  ,
+
   {
     "testCase": "TC14 - Validate the last Name is getting trimmed in successful message list",
     "firstName": "Anju",
