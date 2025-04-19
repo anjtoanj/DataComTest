@@ -1,4 +1,4 @@
-import { test, expect } from "playwright/test";
+import { test, expect } from "@playwright/test";
 import { RegistrationPage } from "../pages/RegistrationPage";
 import dataArray from "../testdata/testData1.json";
 
@@ -10,8 +10,11 @@ test.describe("Registration Form Validation", () => {
     await regPage.navigate();
   });
 
-  dataArray.forEach((data) => {
-    test(data.testCase, async ({ page }) => {
+  for (const data of dataArray) {
+    test(data?.testCase ?? "Default Test Case", async ({ page }) => {
+      regPage = new RegistrationPage(page);
+      await regPage.navigate();
+
       await regPage.fillForm(
         data.firstName,
         data.lastName,
@@ -19,38 +22,33 @@ test.describe("Registration Form Validation", () => {
         data.email,
         data.password
       );
-      await regPage.selectCountry(data.country);
-      // Call acceptTermsAndConditions only if data.terms is present
+
+      if (data.country) {
+        await regPage.selectCountry(data.country);
+      }
+
       if (data.terms) {
         await regPage.acceptTermsAndConditions(JSON.parse(data.terms));
       }
-      await regPage.register();
-      const message = await regPage.getMessage();
-      expect(message).toEqual(data.expectedMessage);
 
-      // Get the registration result
+      await regPage.register();
+
+      const message = await regPage.getMessage();
+      expect(message).toEqual(data?.expectedMessage ?? "");
+
       const registrationResult = await regPage.getRegistrationResult();
-      // Validate the registration result
       console.log(
-        "TC15: Validate the registration result:",
+        `TC: ${data.testCase} - Validate the registration result:`,
         registrationResult
       );
 
-      // Handle null or blank country
-      const expectedCountry = data.country || ""; // Replace null with an empty string
-      if (!data.country && registrationResult.includes(expectedCountry)) {
-        throw new Error(
-          `Validation failed: Country is not displayed as blank in the result set. Expected: "${expectedCountry}", Got: "${registrationResult}"`
-        );
-      }
-
-      expect(registrationResult).toBe([
+      expect(registrationResult).toEqual([
         data.firstName,
         data.lastName,
         data.phoneNumber,
-        data.country,
+        data.country || "", // Handle blank country
         data.email,
       ]);
     });
-  });
+  }
 });
