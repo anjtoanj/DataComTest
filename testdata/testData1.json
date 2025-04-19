@@ -1,0 +1,157 @@
+[
+  {
+    "testCase": "TC01 - Validate mandatory field - LastName",
+    "firstName": "Anju",
+    "lastName": " ",
+    "phoneNumber": "3343342234",
+    "email": "hello@gmail.com",
+    "password": "1234hello123",
+    "country": "New Zealand",
+
+    "expectedMessage": "Last name is mandatory"
+  },
+  {
+    "testCase": "TC02 - Validate mandatory field - Phone number",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": " ",
+    "email": "hello@gmail.com",
+    "password": "1234hello123",
+    "country": "India",
+
+    "expectedMessage": "Phone number is mandatory"
+  },
+  {
+    "testCase": "TC03 - Validate mandatory field - Email",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "3343342234",
+    "email": " ",
+    "password": "1234hello123",
+    "country": "Australia",
+
+    "expectedMessage": "Email is mandatory"
+  },
+  {
+    "testCase": "TC04 - Validate mandatory field - Password",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "3343342234",
+    "email": "hello@gmail.com",
+    "password": " ",
+    "country": "US",
+
+    "expectedMessage": "Password is mandatory"
+  },
+  {
+    "testCase": "TC05 - Password Validation",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "3343342234",
+    "email": "hello@gmail.com",
+    "password": "1234",
+    "country": "New Zealand",
+
+    "expectedMessage": "The password should contain between [6,20] characters!"
+  },
+  {
+    "testCase": "TC06 - Validate country dropdown is selected as expected",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "3343342234",
+    "email": "hello@gmail.com",
+    "password": "1234hello123",
+    "country": "Angola",
+
+    "expectedMessage": "Successfully registered the following information"
+  },
+  {
+    "testCase": "TC07 - Validate accept terms and conditions",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "3343342234",
+    "email": "hello@gmail.com",
+    "password": "1234hello123",
+    "country": "Angola",
+    "terms": "false",
+    "expectedMessage": "Terms and conditions are mandatory"
+  },
+  {
+    "testCase": "TC08 - Validate space in Password",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "3343342234",
+    "email": "hello@gmail.com",
+    "password": "1234hello12354 54",
+    "country": "Angola",
+
+    "expectedMessage": "No space allowed in password"
+  },
+  {
+    "testCase": "TC09 - Validate space in Email",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "3343342234",
+    "email": "he llo @gmail.com",
+    "password": "1234hello1235454",
+    "country": "Angola",
+
+    "expectedMessage": "No space allowed in email"
+  },
+  {
+    "testCase": "TC10 - Validate space in Phone number",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "32442 3 9887878",
+    "email": "hello@gmail.com",
+    "password": "1234hello1235454",
+    "country": "Angola",
+
+    "expectedMessage": "No space allowed in email"
+  },
+  {
+    "testCase": "TC11 - Validate if alphabets allowed in Phone number",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "324rtretre887878",
+    "email": "hello@gmail.com",
+    "password": "1234hello1235454",
+    "country": "Angola",
+
+    "expectedMessage": "No alphabets allowed in email"
+  },
+  {
+    "testCase": "TC12 - Validate length of digits in Phone number",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "324rtretre887878546456456456456546 6756767657567657567657567898798798798710",
+    "email": "hello@gmail.com",
+    "password": "1234hello1235454",
+    "country": "Angola",
+
+    "expectedMessage": "Phone number should be less than 15 digits"
+  },
+  {
+    "testCase": "TC13 - Validate Registration details when country is not selected",
+    "firstName": "Anju",
+    "lastName": "Sree",
+    "phoneNumber": "3245756789798798798710",
+    "email": "hello@gmail.com",
+    "password": "1234hello1235454",
+    "country": " ",
+
+    "expectedMessage": "Successfully registered the following information"
+  },
+  ,
+  {
+    "testCase": "TC14 - Validate the last Name is getting trimmed in successful message list",
+    "firstName": "Anju",
+    "lastName": "Sreekumar",
+    "phoneNumber": "3245756789798798798710",
+    "email": "hello@gmail.com",
+    "password": "1234hello1235454",
+    "country": "India",
+
+    "expectedMessage": "Successfully registered the following information"
+  }
+]
