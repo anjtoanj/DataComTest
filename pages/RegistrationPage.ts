@@ -46,7 +46,6 @@ export class RegistrationPage {
   }
 
   // Scroll and select the country from the dropdown list
-  // Scroll and select the country from the dropdown list
   async selectCountry(country: string) {
     try {
       if (!country || country.trim() === "") {
