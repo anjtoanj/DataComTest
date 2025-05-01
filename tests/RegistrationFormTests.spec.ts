@@ -25,11 +25,12 @@ test.describe("Registration Form Validation", () => {
 
       if (data.country) {
         await regPage.selectCountry(data.country);
+        //     expect(selectedCountry).toEqual(data.country);
       }
 
-      if (data.terms) {
-        await regPage.acceptTermsAndConditions(JSON.parse(data.terms));
-      }
+      // if (data.terms) {
+      //   await regPage.acceptTermsAndConditions(JSON.parse(data.terms));
+      // }
 
       await regPage.register();
 
@@ -38,15 +39,24 @@ test.describe("Registration Form Validation", () => {
 
       const registrationResult = await regPage.getRegistrationResult();
       console.log(
-        `TC: ${data.testCase} - Validate the registration result:`,
+        `${data.testCase} - Validate the registration result:`,
         registrationResult
       );
+
+      // const formattedData = [
+      //   `First Name: ${data.firstName?.trim() || " "}`,
+      //   `Last Name: ${data.lastName?.trim() || " "}`,
+      //   `Phone Number: ${data.phoneNumber?.trim() || " "}`,
+      //   `Country: ${data.country?.trim() || " "}`,
+      //   `Email: ${data.email?.trim() || " "}`,
+      // ];
+      // expect(registrationResult).toEqual(formattedData);
 
       expect(registrationResult).toEqual([
         data.firstName,
         data.lastName,
         data.phoneNumber,
-        data.country || "", // Handle blank country
+        data.country,
         data.email,
       ]);
     });
