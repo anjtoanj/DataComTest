@@ -50,15 +50,22 @@ export class RegistrationPage {
     try {
       if (!country || country.trim() === "") {
         console.warn("Country is blank. Skipping country selection.");
-        return; // Exit the method if the country is blank
-      }
+        //  return "Country is blank"; // Exit the method if the country is blank
+      } else {
+        await this.page.selectOption(this.countryName, {
+          value: country,
+        });
+        await this.page.waitForTimeout(3000); // Optional delay
 
-      await this.page.selectOption(this.countryName, {
-        value: country,
-      });
-      await this.page.waitForTimeout(3000); // Optional delay
+        // // Return the selected country text for validation
+        // const selectedText = await this.page
+        //   .locator(this.countryName)
+        //   .textContent();
+        // return selectedText ?? "No country text found"; // Handle null safely
+      }
     } catch (error) {
       console.warn(`Error selecting country "${country}":`, error.message);
+      //  return "Error selecting country";
     }
   }
 
@@ -90,33 +97,52 @@ export class RegistrationPage {
   }
 
   // Get the message displayed after form submission
-  async getMessage(): Promise<string> {
+  async getMessage() {
     const messageText = await this.page.locator(this.message).textContent();
     return messageText?.trim() || "";
   }
 
   // Get the registration result
-  async getRegistrationResult(): Promise<string> {
-    const ResultFirstName = await this.page
+  async getRegistrationResult(): Promise<string[]> {
+    const firstName = await this.page
       .locator(this.ResultfirstName)
       .textContent();
-    const ResultLastName = await this.page
-      .locator(this.ResultlastName)
-      .textContent();
-    const ResultPhoneNumber = await this.page
+    const ResultFirstName = firstName ? this.getSubstring(firstName) : ""; //Get the substring after ": "
+
+    const lastName = await this.page.locator(this.ResultlastName).textContent();
+    const ResultLastName = lastName ? this.getSubstring(lastName) : "";
+
+    const phoneNumber = await this.page
       .locator(this.ResultphoneNumber)
       .textContent();
-    const ResultCountry = await this.page
-      .locator(this.Resultcountry)
-      .textContent();
-    const ResultEmail = await this.page.locator(this.Resultemail).textContent();
-    // Return an array of trimmed values
-    return [
-      ResultFirstName?.trim() || "",
-      ResultLastName?.trim() || "",
-      ResultPhoneNumber?.trim() || "",
-      ResultCountry?.trim() || "",
-      ResultEmail?.trim() || "",
-    ].join(", ");
+    const ResultPhoneNumber = phoneNumber ? this.getSubstring(phoneNumber) : "";
+
+    const country = await this.page.locator(this.Resultcountry).textContent();
+    const ResultCountry = country ? await this.getSubstring(country) : "";
+
+    const email = await this.page.locator(this.Resultemail).textContent();
+    const ResultEmail = email ? this.getSubstring(email) : "";
+
+    const resultArray: string[] = [
+      ResultFirstName || "",
+      ResultLastName || "",
+      ResultPhoneNumber || "",
+      ResultCountry || "",
+      ResultEmail || "",
+    ];
+
+    return resultArray;
+  }
+
+  // Get the substring after ": "
+  getSubstring(str: string): string {
+    if (!str.includes(": ")) {
+      console.warn(
+        `String "${str}" does not contain ": ". Returning the original string.`
+      );
+      return str; // Return the original string if ": " is not found
+    }
+    const parts = str.split(": ");
+    return parts[1]?.trim() || ""; // Return the second part or an empty string
   }
 }
