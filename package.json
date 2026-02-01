@@ -17,7 +17,7 @@
   "homepage": "https://github.com/anjtoanj/DataComTest#readme",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.58.1",
     "@types/node": "^22.14.1"
   }
 }
