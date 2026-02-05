@@ -1,0 +1,13 @@
+1. Why Playwright?
+- It has built in features like autowait mechanism, reporter, parallel run, in-bulit test runner, also playwright support API testing just by using fixtures, debugging -retries, vedio trace , snapshot etc
+- less falky tests naturally compared to Selenium due to the built in 
+2. BDD 
+Gherkin syntax for non technical users - easily understand 
+Feature file has the test scenarios and in stepdefinitions we write the tests mapped to Feature
+Given When Then which gives nontechnical users also visiblity on the scenario under test 
+ -It cover the gaps in technical terms it will cover that
+3. 3 Amigos
+Business / Product Owner (BA/PO) – explains requirements and business rules
+Developer – explains technical feasibility and implementation approach
+Tester / QA – identifies risks, edge cases, and test scenarios
+4. Tell a time when u overcame a challange?
