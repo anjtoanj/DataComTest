@@ -1,1 +1,31 @@
+####################1. Why Playwright?
+I prefer Playwright because it is a modern automation framework that comes with many features out-of-the-box, which makes test automation faster, stable, and easier to maintain compared to Selenium.
 
+Key reasons:
+✅ Auto-wait and Smart Synchronization
+Playwright has an inbuilt auto-wait mechanism, meaning it automatically waits for elements to be visible, enabled, and ready before interacting. This reduces synchronization issues and makes tests less flaky.
+✅ Built-in Test Runner & Reporting
+Unlike Selenium, Playwright comes with its own test runner, detailed HTML reports, and supports annotations, tagging, and filtering tests easily.
+✅ Parallel Execution Support
+Playwright supports parallel test execution by default, which helps reduce execution time significantly, especially for large regression suites.
+✅ Powerful Debugging Features
+It provides advanced debugging options like:
+Trace Viewer
+Video recording
+Screenshots
+Snapshots
+Retry mechanism
+This makes defect investigation and root cause analysis much easier.
+✅ Supports UI + API Testing Together
+Playwright supports API testing using request fixtures, so we can validate backend APIs and UI flows in the same framework. This is very useful for end-to-end testing.
+✅ Cross-Browser and Cross-Platform Support
+Playwright supports Chromium, Firefox, and WebKit, which helps validate applications across different browsers consistently.
+✅ Built-in Smart Locators
+Playwright supports multiple locator strategies like:
+getByRole() (best for accessibility + stability)
+getByText()
+getByLabel()
+getByPlaceholder()
+getByTestId()
+These are more readable and closer to how real users interact with the UI.
+####################
