@@ -1,5 +1,4 @@
 
-
 #################### 1.Recently handled issue in Playwright framework
 S (Situation)
 Recently, while running our Playwright regression suite in the CI pipeline, I noticed that a few test cases were showing as passed, but when I manually verified the tables in database, some of the fields are not updated.
