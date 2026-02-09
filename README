@@ -1,4 +1,9 @@
+--- TIPS TO MAKE AN EFFICIENT FRAMEWORK ---
+https://www.youtube.com/watch?v=sKpwE84K9fU&list=PLMZDRUOi3a8NtMq3PUS5iJc2pee38rurc
+
 ------Experiments on various features of Playwright---
 Feature 1: DATA DRIVEN TESTING -JSON
 Feature 2: HANDLE WEBTABLE
 Handle the webtable here - https://assertqa.com/practice/webtables
+Feature 3: Network interception
+Feature 4: Handling JS errors
