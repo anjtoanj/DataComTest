@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Success but JS Error</title>
+</head>
+<body>
+  <h1>Test Automation - Hidden JS Error</h1>
+  <button id="submitBtn">Submit</button>
+  <p id="message"></p>
+
+  <script>
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        // Show success message
+        document.getElementById('message').innerText = "Form submitted successfully! ✅";
+
+        // Hidden JS error thrown intentionally
+        nonExistentFunctionCall(); // this will throw a JS error
+    });
+
+    // Optional: capture JS errors in console
+    window.onerror = function(message, source, lineno, colno, error) {
+        console.log("JS Error Captured: " + message);
+    };
+  </script>
+</body>
+</html>

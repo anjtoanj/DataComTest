@@ -1,4 +1,8 @@
 Reference - https://www.youtube.com/watch?v=5pzY2Wc9Cmo
+https://www.youtube.com/watch?v=Rs3gDbSg-hU
+
+****\*\***** GOOD TIPS IN PLAYWRIGHT****\*\*****
+https://www.youtube.com/watch?v=sKpwE84K9fU&list=PLMZDRUOi3a8NtMq3PUS5iJc2pee38rurc
 
 ####################1. Why Playwright?
 I prefer Playwright because it is a modern automation framework that comes with many features out-of-the-box, which makes test automation faster, stable, and easier to maintain compared to Selenium.
@@ -31,13 +35,14 @@ getByPlaceholder()
 getByTestId()
 These are more readable and closer to how real users interact with the UI.
 #################### 2. How to retry failed tests?
-1. You can pass retry thru playwright.config.ts fle or thru commandline ->test name and the no.of retries u have to do.
-#################### 3. What is Network interception? How is it handled in playwright?
-https://playwright.dev/docs/network
-https://playwright.dev/docs/mock
 
-Network interception in Playwright is the ability to capture and control network traffic by routing requests, allowing us to mock responses, block requests, validate payloads, 
- and simulate different backend scenarios for stable automation testing.
+1. You can pass retry thru playwright.config.ts fle or thru commandline ->test name and the no.of retries u have to do.
+   #################### 3. What is Network interception? How is it handled in playwright?
+   https://playwright.dev/docs/network
+   https://playwright.dev/docs/mock
+
+Network interception in Playwright is the ability to capture and control network traffic by routing requests, allowing us to mock responses, block requests, validate payloads,
+and simulate different backend scenarios for stable automation testing.
 
 #################### 4. How to handle Javascript exceptions?
 https://youtube.com/shorts/jKhTcQAtIKY?si=iyVXT9ArNMrDHRvD
@@ -65,4 +70,3 @@ The issue was fixed in the application side
 And overall, the stability and reliability of our Playwright regression suite improved significantly, especially for critical card payment flows where session expiry issues are common.
 🔥 Strong Closing Line (Optional)
 So this improvement helped ensure our automation suite validates not only UI behavior but also application stability by catching hidden JavaScript failures.
-
