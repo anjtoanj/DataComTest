@@ -1,3 +1,5 @@
+Reference - https://www.youtube.com/watch?v=5pzY2Wc9Cmo
+
 ####################1. Why Playwright?
 I prefer Playwright because it is a modern automation framework that comes with many features out-of-the-box, which makes test automation faster, stable, and easier to maintain compared to Selenium.
 
@@ -28,4 +30,39 @@ getByLabel()
 getByPlaceholder()
 getByTestId()
 These are more readable and closer to how real users interact with the UI.
-####################
+#################### 2. How to retry failed tests?
+1. You can pass retry thru playwright.config.ts fle or thru commandline ->test name and the no.of retries u have to do.
+#################### 3. What is Network interception? How is it handled in playwright?
+https://playwright.dev/docs/network
+https://playwright.dev/docs/mock
+
+Network interception in Playwright is the ability to capture and control network traffic by routing requests, allowing us to mock responses, block requests, validate payloads, 
+ and simulate different backend scenarios for stable automation testing.
+
+#################### 4. How to handle Javascript exceptions?
+https://youtube.com/shorts/jKhTcQAtIKY?si=iyVXT9ArNMrDHRvD
+
+✅ STAR Answer: Recently handled issue in Playwright framework
+S (Situation)
+Recently, while running our Playwright regression suite in the CI pipeline, I noticed that a few test cases were showing as passed, but when we manually reviewed the application behavior, the expected functionality was not actually completed. This was a concern because it created a false confidence in our release readiness.
+T (Task)
+My responsibility was to identify why the automation was passing incorrectly and improve the framework so that such issues would be detected automatically in future runs.
+A (Action)
+I analysed the execution logs and Playwright trace reports and noticed that during the test run, the UI flow continued without throwing any assertion failures, but the application had a hidden failure.
+When I checked the browser console logs, I found that the application was throwing an uncaught JavaScript exception, such as a TypeError or an unhandled promise rejection, caused by session expiry and missing token values.
+Since our test scripts were only validating UI elements and not monitoring JavaScript errors, Playwright did not fail the test.
+To fix this, I enhanced the framework by adding global listeners in the base setup:
+I captured page errors using page.on("pageerror")
+I also captured console errors using page.on("console")
+I stored all JS errors during execution
+Finally, I added a validation in afterEach() so that if any JavaScript exception occurred, the test would fail immediately with a clear error message.
+This ensured that even if UI validations passed, the test would fail if the application had internal JavaScript crashes.
+R (Result)
+After implementing this framework enhancement:
+Those tests started failing correctly in CI instead of giving false positives
+We were able to raise defects earlier to developers
+The issue was fixed in the application side
+And overall, the stability and reliability of our Playwright regression suite improved significantly, especially for critical card payment flows where session expiry issues are common.
+🔥 Strong Closing Line (Optional)
+So this improvement helped ensure our automation suite validates not only UI behavior but also application stability by catching hidden JavaScript failures.
+
