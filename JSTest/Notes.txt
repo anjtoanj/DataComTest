@@ -1,0 +1,36 @@
+-------Issue in Playwright , which is skipped by the automation framework---------------
+
+We had a feature on account management
+    - Create a new account by an account administrator
+    - Request for a new card 
+    - Enter the card details 
+        - Some were mandatory fields
+        - Some were non-mandatory fields
+    - Submit the button 
+- The tests were done manually and worked perfectly fine.
+- Then I automated the test scenario in Playwright 
+        - Account generation was done thru API 
+        - Creating new card was done thru UI
+        - Entered all mandatory fields and a few non-mandatory fields
+        - Submitted the Request
+        - Verified for message- 'Request submitted successfully'
+- I added the scenario as part of our Regression test
+- I verified it locally and pushed it to our repo in GitHub
+
+- In the subsequent release, I ran the test as part of our regression.
+- Usually as part of regression testing in UAT , I do some exploratory tests.
+- Then in the DB, I noted some of the values entered on non-mandatory fields were not populated in the card_details table.
+
+- I checked the test artefacts in CI pipeline for automation run
+- The respective test was passed.
+- Then I checked the video trace and noted that the value entered in UI is not getting bound to some of the non-mandatory fields.
+- I manually tried to reproduce the issue and checked the console and found Uncaught JavaScript error.
+- I raised with my Devs and got it sorted.
+
+-Later to protect our test suite from false negatives,
+I attached an event listener to the test to capture JS error using page.on("pageerror") feature and stored the errors if any in an array. And after the test added an assertion to check if the array.HaveLength(0) , if not then fails the test.
+
+
+
+
+
