@@ -5,7 +5,7 @@ test("Click button shows success but JS error occurs", async ({ page }) => {
 
   const errors: Error[] = []; // Declare an empty array
   page.on("pageerror", (error) => {
-    errors.push(error); // To capture JS errors, attach pageerror event listener and push the error into an array to keep track of all the errors happening
+    errors.push(error); // To capture JS errors, attached pageerror event listener and push the error into an array to keep track of all the errors happening
   });
 
   // Open the local HTML page
