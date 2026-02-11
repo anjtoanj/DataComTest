@@ -1,0 +1,47 @@
+Reference: https://www.youtube.com/watch?v=XLC1OebUdns&t=342s
+
+2️⃣ How HAR Helps
+
+HAR files capture actual HTTP traffic (requests and responses) from a real session with the payment gateway.
+1.You perform one manual transaction or test run.
+2.Playwright records all requests and responses to the payment APIs in a HAR file.
+3.Later, your automated tests can replay the HAR, so:
+..The frontend thinks it’s talking to the real payment API.
+..The backend receives mocked responses from HAR.
+No real money is charged, and tests are fully reproducible.
+Example Scenario
+Real Flow:
+User enters card details and clicks "Pay".
+Frontend sends POST /payments with card info to Payment Gateway.
+Gateway responds with:
+{
+"status": "success",
+"transactionId": "TX12345"
+}
+Frontend shows "Payment Successful".
+Problem in automation: Hitting live API is risky.
+
+---
+
+HAR-based Mocking Flow:
+Record HAR while performing a manual payment:
+{
+"request": {
+"url": "https://payment-gateway.com/api/payments",
+"method": "POST",
+"body": { "cardNumber": "4111...", "amount": 100 }
+},
+"response": {
+"status": 200,
+"body": { "status": "success", "transactionId": "TX12345" }
+}
+}
+In Playwright, replay the HAR in your automation:
+await context.routeFromHAR('payment.har');
+
+---
+
+When the automation clicks "Pay":
+The request is intercepted.
+HAR returns the recorded response immediately.
+Frontend shows "Payment Successful" without touching the real API.

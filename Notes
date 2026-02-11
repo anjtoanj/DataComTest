@@ -1,13 +1,44 @@
+References on improvements:
+---Automatically locate WebElements in a webpage -
+https://youtube.com/shorts/E7eoZ9m40Us?si=48scctXMh338m11L
+
+---Modify Page objects to fixtures and pass them as objects in tests-
+https://www.youtube.com/watch?v=k488kAtT-Pw
+How would this work if we have more than 30 fixtures? Should we create multiple files similar to the base file, or is it ok to group all fixtures in one place eg. base.ts?
+@ChecklyHQ
+1 year ago
+As of now I've seen two approaches to this problem.
+
+1. use `mergeFixtures` -> https://playwright.dev/docs/release-notes#merge-test-fixtures
+2. start grouping your fixtures in a huge object e.g. `ui.login`, `ui.cart`, `api.featureA`, ...
+
+---
+
 1. Why Playwright?
-- It has built in features like autowait mechanism, reporter, parallel run, in-bulit test runner, also playwright support API testing just by using fixtures, debugging -retries, vedio trace , snapshot etc
-- less falky tests naturally compared to Selenium due to the built in 
-2. BDD 
-Gherkin syntax for non technical users - easily understand 
-Feature file has the test scenarios and in stepdefinitions we write the tests mapped to Feature
-Given When Then which gives nontechnical users also visiblity on the scenario under test 
- -It cover the gaps in technical terms it will cover that
+   -I chose Playwright because it comes with many built-in testing capabilities such as:
+   Auto-wait mechanism
+   In-built test runner
+   Parallel execution support
+   Rich reporting
+   Retries, tracing, video recording, and screenshot capture
+   -Compared to Selenium, Playwright tests are less flaky by default, mainly because of its smart auto-waits and better element handling.
+   -Another strong feature is its fixture-based framework support.
+   Instead of relying only on Page Object Model, we can create fixtures for each page in the baseTest and inject them directly into test cases as objects, which makes the framework more scalable and cleaner.
+   -Playwright also supports API testing easily using request fixtures, which helps in validating backend APIs and generating test data for UI testing.
+   -It supports working with HAR files, which is useful for:
+   .Mocking API responses
+   .Capturing and replaying API interactions during execution
+   -Additionally, I implemented JavaScript error monitoring using Playwright listeners like:
+   page.on("pageerror")
+   page.on("console")
+
+2. BDD
+   Gherkin syntax for non technical users - easily understand
+   Feature file has the test scenarios and in stepdefinitions we write the tests mapped to Feature
+   Given When Then which gives nontechnical users also visiblity on the scenario under test
+   -It cover the gaps in technical terms it will cover that
 3. 3 Amigos
-Business / Product Owner (BA/PO) – explains requirements and business rules
-Developer – explains technical feasibility and implementation approach
-Tester / QA – identifies risks, edge cases, and test scenarios
+   Business / Product Owner (BA/PO) – explains requirements and business rules
+   Developer – explains technical feasibility and implementation approach
+   Tester / QA – identifies risks, edge cases, and test scenarios
 4. Tell a time when u overcame a challange?
